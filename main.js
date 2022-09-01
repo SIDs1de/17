@@ -128,7 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const pageSlideContentHeight = pageSlideContent.offsetHeight;
         if (pageSlideContentHeight > window.innerHeight) {
           wrapper.classList.add('_free');
-          pageSlider.params.freeMode.enabled = true;
+          pageSlider.params.freeMode = {
+            enabled: true,
+            sticky: true,
+          };
           break;
         }
       }
