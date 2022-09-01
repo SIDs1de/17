@@ -1,0 +1,220 @@
+/*!
+ * Select.JS
+ * Version: 1.0.24
+ *
+ * Copyright 2017 Wolfgang Kurz
+ * Released under the MIT license
+ * https://github.com/WolfgangKurz/Select-JS
+ */
+.select-js {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #b4b4b4;
+  border-radius: 3px;
+  background-color: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.select-js::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  margin-top: -8px;
+  right: 4px;
+  top: 50%;
+  width: 17px;
+  height: 17px;
+  background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%229%22%20height%3D%229%22%3E%3Cpath%20d%3D%22M1%2C3%20L4.5%2C7%208%2C3%22%20fill%3D%22%23787878%22%2F%3E%3C%2Fsvg%3E);
+  background-position: center;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  pointer-events: none;
+}
+.select-js .select-js-display {
+  padding: 2px 28px 2px 8px;
+  height: 100%;
+  min-height: 1.72em;
+  line-height: 150%;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  overflow: hidden;
+}
+.select-js input.select-js-display {
+  border: none;
+  outline: none !important;
+  border-radius: 3px;
+  white-space: normal;
+  text-overflow: clip;
+}
+.select-js .select-js-optlist,
+.select-js-global-optlist.select-js-optlist {
+  position: absolute;
+  display: none;
+  margin-bottom: 14px;
+  max-height: 220px;
+  left: -1px;
+  right: -1px;
+  border: 1px solid #0077cc;
+  border-radius: 0 0 3px 3px;
+  background-color: #fff;
+  text-align: left;
+  overflow-x: hidden;
+  overflow-y: auto;
+  cursor: pointer;
+  z-index: 19424;
+}
+.select-js.select-js-inline .select-js-optlist,
+.select-js-global-optlist.select-js-optlist {
+  right: auto;
+  border-radius: 0 3px 3px 3px;
+}
+.select-js.select-js-inline.select-js-inline-right .select-js-optlist {
+  left: auto;
+  right: -1px;
+  border-radius: 0 3px 3px 3px;
+}
+.select-js-optlist .select-js-option,
+.select-js-optlist .select-js-optgroup {
+  display: block;
+  padding: 4px 10px 4px 6px;
+  border-bottom: 1px solid #dcdcdc;
+}
+.select-js-optlist .select-js-option.select-js-indent {
+  padding-left: 18px;
+}
+.select-js-optlist .select-js-option.selected {
+  background-color: #f6f6f6;
+}
+.select-js-optlist .select-js-optgroup {
+  font-weight: 600;
+  font-style: italic;
+}
+.select-js-optlist .select-js-option.select-js-focus:hover {
+  background-color: #e8e8e8;
+}
+.select-js-optlist .select-js-option:last-child {
+  border-bottom-width: 0;
+}
+
+.select-js.select-js-scroll .select-js-optlist {
+  overflow-y: scroll;
+}
+.select-js.select-js-noscroll .select-js-optlist {
+  overflow-y: hidden;
+}
+
+.select-js.select-js-up.select-js-inline .select-js-optlist {
+  border-radius: 3px 3px 3px 0;
+}
+.select-js.select-js-up .select-js-optlist {
+  margin-top: 14px;
+  margin-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  bottom: 100%;
+}
+.select-js.select-js-inline .select-js-optlist .select-js-option,
+.select-js-global-optlist.select-js-inline .select-js-option {
+  white-space: nowrap;
+}
+.select-js.select-js-up::before {
+  background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%229%22%20height%3D%229%22%3E%3Cpath%20d%3D%22M1%2C6%20L4.5%2C2%208%2C6%22%20fill%3D%22%23787878%22%2F%3E%3C%2Fsvg%3E);
+}
+.select-js.select-js-up.dropdown::before {
+  background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%229%22%20height%3D%229%22%3E%3Cpath%20d%3D%22M1%2C3%20L4.5%2C7%208%2C3%22%20fill%3D%22%230077CC%22%2F%3E%3C%2Fsvg%3E);
+}
+
+.select-js.dropdown {
+  border-color: #0077cc;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 1px 4px rgba(87, 56, 147, 0.2);
+  outline: none !important;
+}
+.select-js.select-js-up.dropdown {
+  border-radius: 0 0 3px 3px;
+}
+.select-js.dropdown::before {
+  background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%229%22%20height%3D%229%22%3E%3Cpath%20d%3D%22M1%2C6%20L4.5%2C2%208%2C6%22%20fill%3D%22%230077CC%22%2F%3E%3C%2Fsvg%3E);
+}
+.select-js.dropdown .select-js-optlist,
+.select-js-global-optlist.select-js-optlist.dropdown {
+  display: block;
+}
+
+.select-js.select-js-inline .select-js-optlist .select-js-option,
+.select-js.select-js-inline .select-js-optlist .select-js-optgroup {
+  padding-right: 30px;
+}
+
+.select-js.select-js-editable .select-js-optlist .select-js-option.selected {
+  background-color: transparent;
+}
+.select-js.select-js-editable .select-js-optlist .select-js-option:focus {
+  background-color: #e8e8e8;
+}
+
+.select-js.select-js-editable.select-js-autofilter
+  .select-js-optlist
+  .select-js-option {
+  display: none;
+}
+.select-js.select-js-editable.select-js-autofilter
+  .select-js-optlist
+  .select-js-option.select-js-filtered {
+  display: block;
+}
+.select-js.select-js-editable.select-js-autofilter
+  .select-js-optlist
+  .select-js-optgroup.select-js-filteredless {
+  display: none;
+}
+
+.select-js.select-js-editable.select-js-customfilter
+  .select-js-optlist
+  .select-js-option {
+  display: none;
+}
+.select-js.select-js-editable.select-js-customfilter
+  .select-js-optlist
+  .select-js-option.select-js-filtered {
+  display: block;
+}
+.select-js.select-js-editable.select-js-customfilter
+  .select-js-optlist
+  .select-js-optgroup.select-js-filteredless {
+  display: none;
+}
+
+.select-js-global-optlist.select-js-optlist.select-js-fullsize {
+  margin: 0;
+  column-gap: 9px;
+  column-rule: 1px solid #f4f4f4;
+  border-radius: 3px;
+  overflow-x: auto;
+}
+.select-js-global-optlist.select-js-optlist.select-js-fullsize
+  .select-js-option:last-child {
+  border-bottom-width: 1px;
+}
+.select-js-global-optlist.select-js-optlist.select-js-test {
+  display: block !important;
+  margin: 0;
+  max-height: 28em;
+  right: 1px;
+  bottom: 110%;
+  height: 200px !important;
+  transform: none !important;
+  overflow-x: scroll !important;
+}
+.select-js-global-optlist.select-js-optlist.select-js-test > .select-js-option {
+  float: left;
+  display: inline-block;
+  clear: both;
+}
